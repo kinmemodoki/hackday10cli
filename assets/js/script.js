@@ -169,6 +169,15 @@ function showMordal(cat_id,name){
     return response.json();
   }).then((json)=>{
     console.log(json);
+    $('#modal-leftImg').attr("src","http://13.115.239.18/"+json.imagePath.file_path);
+    $('#modal-item_latest').text(json.latestAppear.create_at);
+    $('#modal-item_kyosei').text(json.latestAppear.kyosei);
+    fetch('https://maps.googleapis.com/maps/api/geocode/json?latlng='+json.latestAppear.location_x+','+json.latestAppear.location_y+'&key=AIzaSyDxKhQcrnMgAJotsIr4V1Lr_-j83FmTDCc&language=ja')
+    .then(function(response) {
+      return response.json();
+    }).then((json)=>{
+    $('#modal-item_address').text(json.results[0].formatted_address);
+    });
   });
 
   $('#sampleModal').modal();

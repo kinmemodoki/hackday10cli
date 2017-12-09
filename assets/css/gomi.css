@@ -1,4 +1,15 @@
 #modal-leftImg {
   height:180px;
   width:180px;
+  object-fit: contain;
+}
+.modal-rightMessage{
+  position: absolute;
+  top:20px;
+  left:200px;
+  line-height: 180%;
+  font-size: 18px;
+}
+#modal-item_address{
+  font-size: 14px;
 }
