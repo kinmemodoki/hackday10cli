@@ -171,7 +171,7 @@ function showMordal(cat_id,name){
     console.log(json);
     $('#modal-leftImg').attr("src","http://13.115.239.18/"+json.imagePath.file_path);
     $('#modal-item_latest').text(json.latestAppear.create_at);
-    $('#modal-item_kyosei').text(json.latestAppear.kyosei);
+    $('#modal-item_kyosei').text((json.kyosei.surgery_flag?"されてる":"されてない"));
     fetch('https://maps.googleapis.com/maps/api/geocode/json?latlng='+json.latestAppear.location_x+','+json.latestAppear.location_y+'&key=AIzaSyDxKhQcrnMgAJotsIr4V1Lr_-j83FmTDCc&language=ja')
     .then(function(response) {
       return response.json();
