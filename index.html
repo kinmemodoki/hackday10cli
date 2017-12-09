@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+
+  <meta charset="UTF-8">
+  <title></title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/reset.css" type="text/css" media="screen">
+  <link rel="stylesheet" href="assets/css/style.css" type="text/css" media="screen">
+  <link rel="stylesheet" href="assets/css/gomi.css" type="text/css" media="screen">
+  <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+</head>
+
+<body>
+  <div class="wrap">
+    <section id="map" class="section__left">
+      地図のスペース
+    </section>
+
+    <section id="right-section" class="section__right">
+      <p class="catList__head">のらねこリスト</p>
+      <ul class="catList" id="catList">
+        <!--
+        <li class="catList__item">
+          <p class="catList__item__name">シャーリー</p>
+          <p class="catList__item__address">調布市</p>
+          <a href="" class="catList__item__button">くわしく見る</a>
+        </li>
+        <li class="catList__item">
+          <p class="catList__item__name">ゆずにゃん</p>
+          <p class="catList__item__address">調布市</p>
+          <a href="" class="catList__item__button">くわしく見る</a>
+        </li>
+        <li class="catList__item">
+          <p class="catList__item__name">ねこみーだん</p>
+          <p class="catList__item__address">調布市</p>
+          <a href="" class="catList__item__button">くわしく見る</a>
+        </li>
+        <li class="catList__item">
+          <p class="catList__item__name">ラン</p>
+          <p class="catList__item__address">調布市</p>
+          <a href="" class="catList__item__button">くわしく見る</a>
+        </li>
+        -->
+      </ul>
+    </section>
+  </div>
+
+  <!-- モーダル・ダイアログ -->
+  <div class="modal fade" id="sampleModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span>×</span></button>
+          <h4 class="modal-title" id="modal-title">名前読み込み中...</h4>
+        </div>
+        <div class="modal-body">
+          <img src="assets/images/loading.gif" id="modal-leftImg">
+          <div class="modal-rightMessage">
+            <p id="modal-item_latest"></p>
+            <p id="modal-item_address"></p>
+            <p id="modal-item_kyosei"></p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDxKhQcrnMgAJotsIr4V1Lr_-j83FmTDCc&libraries=places,geometry,visualization">
+</script>
+<script type="text/javascript" src="assets/js/script.js"></script>
+</html>
