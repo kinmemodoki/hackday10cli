@@ -59,8 +59,10 @@ p {
 
 .wrap {
   display: flex;
+  height: 100vh;
   min-height: 100%;
   max-height: calc(100% - 50px);
+  overflow-y: scroll;
 }
 
 .section__left {

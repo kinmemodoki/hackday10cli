@@ -13,3 +13,7 @@
 #modal-item_address{
   font-size: 14px;
 }
+.right-wrap{
+  overflow: scroll;
+  height:100%;
+}

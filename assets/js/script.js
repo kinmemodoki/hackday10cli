@@ -1,3 +1,4 @@
+var map;
 var myLatlng = new google.maps.LatLng(35.655689, 139.544200);
 var service = new google.maps.DistanceMatrixService();
 var mapOptions = {
@@ -132,8 +133,14 @@ function setCatList(dataList){
       showMordal(id,name);
     }
   };
+  var clickEvent2 = function(lat,lng){
+    return function(evt){
+      forcusMap(lat,lng);
+    }
+  };
   var catList = document.getElementById('catList');
   for (var i in dataList) {
+    var catPoint = getCenter(dataList[i]);
     var li = document.createElement('p');
     li.classList.add('catList__item');
 
@@ -146,9 +153,10 @@ function setCatList(dataList){
     detail.classList.add('catList__item__button');
     
     name.textContent = dataList[i][0]["name"];
-    addr.textContent = "調布市";
+    addr.textContent = "緯度:"+catPoint.lat.toFixed(4)+", 経度:"+catPoint.lng.toFixed(4);
     detail.textContent = "くわしく見る";
 
+    li.addEventListener("click",clickEvent2(catPoint.lat, catPoint.lng));
     detail.addEventListener("click",clickEvent(dataList[i][0]["cat_id"],dataList[i][0]["name"]));
 
     li.appendChild(name);
@@ -157,6 +165,11 @@ function setCatList(dataList){
     
     catList.appendChild(li);
   }
+}
+
+function forcusMap(lat,lng){
+  map.panTo(new google.maps.LatLng(lat,lng));
+  console.log(lat,lng)
 }
 
 function showMordal(cat_id,name){
@@ -176,7 +189,7 @@ function showMordal(cat_id,name){
     .then(function(response) {
       return response.json();
     }).then((json)=>{
-    $('#modal-item_address').text(json.results[0].formatted_address);
+      $('#modal-item_address').text(json.results[0].formatted_address);
     });
   });
 
@@ -184,7 +197,7 @@ function showMordal(cat_id,name){
 }
 
 function initmap(){
-  var map = new google.maps.Map(document.getElementById('map'),mapOptions);
+  map = new google.maps.Map(document.getElementById('map'),mapOptions);
   
   fetch('http://13.115.239.18/geo', { mode: 'cors' })
   .then(function(response) {
