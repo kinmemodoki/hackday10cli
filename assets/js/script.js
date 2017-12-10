@@ -197,28 +197,38 @@ function showMordal(cat_id,name){
 }
 
 function initmap(){
+  var clickEvent = function(id,name){
+    return function(evt){
+      showMordal(id,name);
+    }
+  };
   map = new google.maps.Map(document.getElementById('map'),mapOptions);
   
   fetch('http://13.115.239.18/geo', { mode: 'cors' })
   .then(function(response) {
     return response.json();
-  }).then((json)=>{
+  }).then(async (json)=>{
     console.log(json);
     console.log(testData);
     for (i in json) {
       // Add the circle for this city to the map.
-      var catAreaCenter = getCenter(json[i])
+      var resp = await fetch('http://13.115.239.18/info?cat_id='+json[i][0]["cat_id"], { mode: 'cors' });
+      var kyosei = await resp.json();
+      var color = kyosei.kyosei.surgery_flag?"blue":"red";
+      console.log("ma",json[i]);
+
+      var catAreaCenter = getCenter(json[i]);
       var cityCircle = new google.maps.Circle({
-        strokeColor: '#FF0000',
+        strokeColor: '#666',
         strokeOpacity: 0.8,
         strokeWeight: 2,
-        fillColor: '#FF0000',
+        fillColor: color,
         fillOpacity: 0.35,
         map: map,
         center: catAreaCenter,
         radius: getRadius(json[i],catAreaCenter)
       });
-      console.log(cityCircle.radius);
+      cityCircle.addListener('click', clickEvent(json[i][0]["cat_id"],json[i][0]["name"]));
     }
     setCatList(json);
 
